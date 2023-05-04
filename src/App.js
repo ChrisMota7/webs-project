@@ -1,12 +1,12 @@
 import './App.css';
-// import Login from '../src/app/login/Login'
-import NavBar from './components/NavBar/NavBar';
+// import NavBar from './components/NavBar/NavBar';
+import Crud from './app/Crud/Crud'
 
 function App() {
   return (
     <div className="App">
-      <NavBar></NavBar>
-      {/* <Login></Login> */}
+      {/* <NavBar></NavBar> */}
+      <Crud />
     </div>
   );
 }
