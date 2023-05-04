@@ -1,0 +1,20 @@
+[
+    {
+        "userId": 1,
+        "username": "Elvirita Bb",
+        "email": "elvirita@ecim.com",
+        "password": "12345"
+    },
+    {
+        "userId": 2,
+        "username": "Motita Bb",
+        "email": "motita@ecim.com",
+        "password": "12345"
+    },
+    {
+        "userId": 3,
+        "username": "Christian Bb",
+        "email": "christian@ecim.com",
+        "password": "12345"
+    }
+]
