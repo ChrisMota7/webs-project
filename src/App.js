@@ -6,7 +6,8 @@ import NavBar from './components/NavBar/NavBar';
 import Players from './json/Players.json'
 
 function App() {
-  const array = ["#", "Team", "JJ", "JG", "JE", "JP", "DF", "INFAVOR", "AGAINST", "PST"]
+  const array = ["New", "Mew", "New"]
+  // const array = ["#", "Team", "JJ", "JG", "JE", "JP", "DF", "INFAVOR", "AGAINST", "PST"]
   const players = Players
 
   return (
