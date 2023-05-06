@@ -16,7 +16,7 @@ function App() {
         <div style={{ width: '25%' }}>
           <NavBar></NavBar> 
         </div >
-          {/* <Login></Login> */}
+        
         <div style={{ width: '75%' }}>
         <GenericTableAdmin columns={array} content={players}/>
         </div>
