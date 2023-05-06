@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
-import '../GenericTable/GenericTable.css'
+import '../GenericTableAdmin/GenericTableAdmin.css'
 
-const GenericTable = (props) => {
+const GenericTableAdmin = (props) => {
   const columns = props.columns
   const content = props.content
 
@@ -24,6 +24,10 @@ const GenericTable = (props) => {
                 {Object.entries(data).map(([key, value]) => (
                   <td key={key}>{value}</td>
                 ))}
+                <td className='action-buttons'>
+                  <button type="button" class="btn btn-warning">Edit</button>
+                  <button type="button" class="btn btn-danger">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -32,4 +36,4 @@ const GenericTable = (props) => {
   );
 }
 
-export default GenericTable;
+export default GenericTableAdmin;
