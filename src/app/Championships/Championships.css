@@ -1,0 +1,5 @@
+.championships {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: column;
+}

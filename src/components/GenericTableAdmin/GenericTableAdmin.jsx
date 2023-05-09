@@ -21,8 +21,8 @@ const GenericTableAdmin = (props) => {
           <tbody>
             {content.map(data => (
               <tr key={data.id}>
-                {Object.entries(data).map(([key, value]) => (
-                  <td key={key}>{value}</td>
+                {Object.entries(data).map(([key, value], index) => (
+                  index !== 0 && <td key={key}>{value}</td>
                 ))}
                 <td className='action-buttons'>
                   <button type="button" class="btn btn-warning">Edit</button>

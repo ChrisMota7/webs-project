@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
+import TopNavBar from './components/TopNavBar/TopNavBar'
 import NavBarOff from './components/NavBarOff/NavBarOff';
+import Championships from './app/Championships/Championships';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -28,7 +30,8 @@ function App() {
         {isMobile ? <NavBarOff /> : <NavBar />}
       </div>
       <div style={contentStyle}>
-        {/* Content */}
+        <TopNavBar />
+        <Championships />
       </div>
     </div>
   );

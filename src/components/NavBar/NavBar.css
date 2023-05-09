@@ -54,3 +54,11 @@
   color: white;
   background: rgb(16, 31, 51, 1);
 }
+
+.navs {
+  color: #0dcaf0 !important;
+}
+
+.selected-nav {
+  background-color: #0dcaf0 !important;
+}

@@ -1,0 +1,14 @@
+[
+    {
+        "cateoryId": 1,
+        "category": "19:00 - 20:00"
+    },
+    {
+        "cateoryId": 2,
+        "category": "20::00 - 21:00"
+    },
+    {
+        "cateoryId": 3,
+        "category": "21:00 - 22:00"
+    }
+]
