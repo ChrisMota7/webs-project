@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
+import TopNavBar from './components/TopNavBar/TopNavBar'
 import Card from './components/Card/Card';
 import img from "./img/team2.jpg"
 import img3 from "./img/team3.jpg"
@@ -14,7 +15,11 @@ function App() {
         <NavBar></NavBar> 
       </div >
       
-      <div style={{ width: '75%' }}>
+
+      <div style={{ width: '80%' }}>
+      <div>
+          <TopNavBar/>
+      </div>
         <Card image={img} alterImg={alterImg} teamName={team}/>
         <br />
         <Card image={img3} alterImg={alterImg} teamName={team}/>
