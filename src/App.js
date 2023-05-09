@@ -1,23 +1,34 @@
+import { useState, useEffect } from 'react';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
-import Card from './components/Card/Card';
-import img from "./img/team2.jpg"
-import img3 from "./img/team3.jpg"
+import NavBarOff from './components/NavBarOff/NavBarOff';
 
 function App() {
-  const alterImg = "Image"
-  const team = "Team 1!"
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mediaQuery.matches);
+    const handleResize = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener('change', handleResize);
+    return () => mediaQuery.removeEventListener('change', handleResize);
+  }, []);
+
+  const navbarStyle = {
+    width: isMobile ? '100%' : '25%',
+  };
+
+  const contentStyle = {
+    width: isMobile ? '100%' : '75%',
+  };
 
   return (
     <div className="App" style={{ display: 'flex' }}>
-      <div style={{ width: '25%' }}>
-        <NavBar></NavBar> 
-      </div >
-      
-      <div style={{ width: '75%' }}>
-        <Card image={img} alterImg={alterImg} teamName={team}/>
-        <br />
-        <Card image={img3} alterImg={alterImg} teamName={team}/>
+      <div style={navbarStyle}>
+        {isMobile ? <NavBarOff /> : <NavBar />}
+      </div>
+      <div style={contentStyle}>
+        {/* Content */}
       </div>
     </div>
   );
