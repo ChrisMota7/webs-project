@@ -17,9 +17,9 @@ function App() {
       
 
       <div style={{ width: '80%' }}>
-      <div>
-          <TopNavBar/>
-      </div>
+        <div>
+            <TopNavBar/>
+        </div>
         <Card image={img} alterImg={alterImg} teamName={team}/>
         <br />
         <Card image={img3} alterImg={alterImg} teamName={team}/>
