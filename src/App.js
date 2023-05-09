@@ -1,26 +1,25 @@
 import './App.css';
-import GenericTable from './components/GenericTable/GenericTable';
-import GenericTableAdmin from './components/GenericTableAdmin/GenericTableAdmin';
-// import Login from '../src/app/login/Login'
 import NavBar from './components/NavBar/NavBar';
-//import Delete from './components/delete/delete';
-import Players from './json/Players.json'
+import Card from './components/Card/Card';
+import img from "./img/team2.jpg"
+import img3 from "./img/team3.jpg"
 
 function App() {
-  const array = ["Column 1", "Column 2", "Column 3"]
-  // const array = ["#", "Team", "JJ", "JG", "JE", "JP", "DF", "INFAVOR", "AGAINST", "PST"]
-  const players = Players
+  const alterImg = "Image"
+  const team = "Team 1!"
 
   return (
     <div className="App" style={{ display: 'flex' }}>
-        <div style={{ width: '25%' }}>
-          <NavBar></NavBar> 
-        </div >
-        
-        <div style={{ width: '75%' }}>
-        <GenericTableAdmin columns={array} content={players}/>
-        </div>
-        </div>
+      <div style={{ width: '25%' }}>
+        <NavBar></NavBar> 
+      </div >
+      
+      <div style={{ width: '75%' }}>
+        <Card image={img} alterImg={alterImg} teamName={team}/>
+        <br />
+        <Card image={img3} alterImg={alterImg} teamName={team}/>
+      </div>
+    </div>
   );
 }
 
