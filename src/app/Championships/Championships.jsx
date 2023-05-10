@@ -19,7 +19,7 @@ const Championships = () => {
             </div>
 
             <div>
-                <GenericTableAdmin columns={columnName} content={Categories} title={"Championships"}/>
+                {/* <GenericTableAdmin columns={columnName} content={Categories} title={"Championships"}/> */}
             </div>
         </div>
     )
