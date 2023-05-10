@@ -12,7 +12,10 @@ const Championships = () => {
     return (
         <div className='championships'>
             <div>
-                <GenericTable columns={columnName} content={Categories} title={"Championships"}/>
+                <GenericTable 
+                    columns={columnName} 
+                    content={Categories} 
+                    title={"Championships"}/>
             </div>
 
             <div>

@@ -1,17 +1,17 @@
 [
     {
         "competitionid": 4,
-        "teamOne": "Cruz Azul",
-        "teamTwo": "América"
+        "teamOne": "Team 1",
+        "teamTwo": "Team 2"
     },
     {
         "competitionid": 5,
-        "teamOne": "Cruz Azul",
-        "teamTwo": "América"
+        "teamOne": "Team 1",
+        "teamTwo": "Team 2"
     },
     {
         "competitionid": 6,
-        "teamOne": "Cruz Azul",
-        "teamTwo": "América"
+        "teamOne": "Team 1",
+        "teamTwo": "Team 2"
     }
 ]

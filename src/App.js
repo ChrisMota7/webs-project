@@ -3,7 +3,8 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import TopNavBar from './components/TopNavBar/TopNavBar'
 import NavBarOff from './components/NavBarOff/NavBarOff';
-import Championships from './app/Championships/Championships';
+// import Championships from './app/Championships/Championships';
+import Competitions from './app/Competitions/Competitions';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -31,7 +32,8 @@ function App() {
       </div>
       <div style={contentStyle}>
         <TopNavBar />
-        <Championships />
+        {/* <Championships /> */}
+        <Competitions />
       </div>
     </div>
   );

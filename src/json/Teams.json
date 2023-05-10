@@ -1,0 +1,48 @@
+[
+    {
+        "teamid": 1,
+        "teamName": "Motita Bb",
+        "shield": "Ño"
+        // "players": [
+        //     {
+        //         "playerid": 1,
+        //         "name": "io"
+        //     },
+        //     {
+        //         "playerid": 2,
+        //         "name": "io"
+        //     }
+        // ]
+    },
+    {
+        "teamid": 2,
+        "teamName": "Motita Bb",
+        "shield": "Ño"
+        // "players": [
+        //     {
+        //         "playerid": 1,
+        //         "name": "io"
+        //     },
+        //     {
+        //         "playerid": 2,
+        //         "name": "io"
+        //     }
+        // ]
+    },
+    {
+        "teamid": 3,
+        "teamName": "Motita Bb",
+        "shield": "Ño"
+        // "players": 
+        // [
+        //     {
+        //         "playerid": 1,
+        //         "name": "io"
+        //     },
+        //     {
+        //         "playerid": 2,
+        //         "name": "io"
+        //     }
+        // ]
+    }
+]
