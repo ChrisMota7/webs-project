@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   const navbarStyle = {
-    width: isMobile ? '100%' : '25%',
+    width: isMobile ? '0%' : '25%',
   };
 
   const contentStyle = {
