@@ -1,0 +1,17 @@
+[
+    {
+        "golesid": 1,
+        "amount": 30,
+        "userid": 1
+    },
+    {
+        "golesid": 1,
+        "amount": 20,
+        "userid": 2
+    },
+    {
+        "golesid": 1,
+        "amount": 40,
+        "userid": 3
+    }
+]

@@ -1,20 +1,20 @@
 import React from 'react';
-import Categories from '../../json/Teams.json'
+import Categories from '../../json/Points.json'
 import GenericTableAdmin from "../../components/GenericTableAdmin/GenericTableAdmin"
 
-const Team = () => {
-    const columnName = ["NameUser", "Shield"]
+const Points = () => {
+    const columnName = ["Played Competition", "Sinned Competition"]
     return (    
-        <div className='Teams'>
+        <div className='Points'>
             <div>
                 <GenericTableAdmin 
                     columns={columnName} 
                     content={Categories} 
-                    title={"TEAMS"}/>
+                    title={"POINTS"}/>
             </div>
         </div>
             
     );
   }
   
-  export default Team;
+  export default Points;

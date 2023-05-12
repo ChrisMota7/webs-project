@@ -1,0 +1,23 @@
+[
+    {
+        "userid": 1,
+        "name": "Motita Bb",
+        "fullName": "López Vargas",
+        "password": "123456",
+        "admin": 1
+    },
+    {
+        "userid": 2,
+        "name": "Elvirita Bb",
+        "fullName": "López Vargas",
+        "password": "123456",
+        "admin": 0
+    },
+    {
+        "userid": 3,
+        "name": "Motita Bb",
+        "fullName": "López Vargas",
+        "password": "123456",
+        "admin": 1 
+    }
+]

@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar'
 import TopNavBar from './components/TopNavBar/TopNavBar'
-import NavBarOff from './components/NavBarOff/NavBarOff';
+import NavBarOff from './components/NavBarOff/NavBarOff'
 // import Championships from './app/Championships/Championships';
-import Competitions from './app/Competitions/Competitions';
+import Competitions from './app/Competitions/Competitions'
+import Team from './app/Team/Team'
+import User from './app/User/User'
+import Goles from './app/Goles/Goles'
+import Points from './app/Points/Points'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -33,7 +37,12 @@ function App() {
       <div style={contentStyle}>
         <TopNavBar />
         {/* <Championships /> */}
-        <Competitions />
+        {/* <Competitions /> */}
+        <Team />
+        <User />
+        <Goles />
+        <Points />
+        
       </div>
     </div>
   );
