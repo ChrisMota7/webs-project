@@ -3,15 +3,15 @@ import "./Card.css"
 
 const Card = (props) => {
     return (
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
+        <div className="flip-card">
+            <div className="flip-card-inner">
+                <div className="flip-card-front">
                     <img src={props.image} alt={props.alterImg} />
-                    <p class="title">{props.teamName}</p>
+                    <p className="title">{props.teamName}</p>
                 </div>
                 
-                <div class="flip-card-back">
-                    <p class="title">BACK</p>
+                <div className="flip-card-back">
+                    <p className="title">BACK</p>
                     <p>Leave Me</p>
                 </div>
             </div>

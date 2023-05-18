@@ -3,8 +3,8 @@ import React from 'react';
 import "./Championships.css"
 
 import Categories from "../../json/Categories.json"
-import GenericTable from "../../components/GenericTable/GenericTable"
-import GenericTableAdmin from "../../components/GenericTableAdmin/GenericTableAdmin"
+import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin"
+import GenericTable from "../commonComponents/GenericTable/GenericTable"
 
 const Championships = () => {
     const columnName = ["Category"]
@@ -19,7 +19,10 @@ const Championships = () => {
             </div>
 
             <div>
-                {/* <GenericTableAdmin columns={columnName} content={Categories} title={"Championships"}/> */}
+                <GenericTableAdmin 
+                    columns={columnName} 
+                    content={Categories} 
+                    title={"Championships"}/>
             </div>
         </div>
     )

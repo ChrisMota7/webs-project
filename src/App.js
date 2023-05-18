@@ -1,42 +1,38 @@
-import { useState, useEffect } from 'react';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import TopNavBar from './components/TopNavBar/TopNavBar'
-import NavBarOff from './components/NavBarOff/NavBarOff';
-// import Championships from './app/Championships/Championships';
-import Competitions from './app/Competitions/Competitions';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NavBar from './app/commonComponents/NavBar/NavBar';
+import Competitions from './app/Competitions/Competitions'
+import Championships from './app/Championships/Championships'
+import Teams from './app/Team/Team'
+import Home from './app/Home/Home'
+import SignIn from './app/commonComponents/SignIn/SignIn';
+import CreateUser from './app/Actions/Users/CreateUser';
+import Users from './app/Users/Users';
 
-function App() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mediaQuery.matches);
-    const handleResize = (e) => setIsMobile(e.matches);
-    mediaQuery.addEventListener('change', handleResize);
-    return () => mediaQuery.removeEventListener('change', handleResize);
-  }, []);
-
-  const navbarStyle = {
-    width: isMobile ? '0%' : '25%',
-  };
-
-  const contentStyle = {
-    width: isMobile ? '100%' : '75%',
-  };
-
-  return (
-    <div className="App" style={{ display: 'flex' }}>
-      <div style={navbarStyle}>
-        {isMobile ? <NavBarOff /> : <NavBar />}
-      </div>
-      <div style={contentStyle}>
-        <TopNavBar />
-        {/* <Championships /> */}
-        <Competitions />
-      </div>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return(
+      <BrowserRouter>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 1 }}>
+            <NavBar />
+          </div>
+          <div style={{ flex: 3, marginRight: '10px', marginLeft: '10px' }}>
+            <Routes>
+              <Route exact path='/' element={<SignIn />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/competitions' element={<Competitions />} />
+              <Route path='/championships' element={<Championships />} />
+              <Route path='/teams' element={<Teams />} />
+              <Route path='/create-user' element={<CreateUser />} />
+              <Route path='/users' element={<Users />} />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
 
 export default App;
