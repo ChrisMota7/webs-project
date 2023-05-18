@@ -1,0 +1,17 @@
+[
+    {
+        "pointsid": 1,
+        "playedComp": 10,
+        "winnedComp": 10
+    },
+    {
+        "pointsid": 2,
+        "playedComp": 10,
+        "winnedComp": 5
+    },
+    {
+        "pointsid": 3,
+        "playedComp": 10,
+        "winnedComp": 6
+    }
+]

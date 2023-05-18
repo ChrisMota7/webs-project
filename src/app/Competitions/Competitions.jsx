@@ -11,21 +11,21 @@ const Competitions = () => {
     return (    
         <div className='championships'>
             <div>
-                <GenericTable 
+                <GenericTableAdmin 
                     columns={columnName} 
                     content={Categories1} 
                     title={"Competition 19:00 - 20:00"}/>
             </div>
                 
             <div>
-                <GenericTable 
+                <GenericTableAdmin 
                 columns={columnName} 
                 content={Categories2} 
                 title={"Competition 20:00 - 21:00"}/>
             </div>
 
             <div>
-                <GenericTable 
+                <GenericTableAdmin 
                 columns={columnName} 
                 content={Categories3} 
                 title={"Competition 22:00 - 23:00"}/>
