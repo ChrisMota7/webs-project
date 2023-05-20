@@ -8,6 +8,7 @@ import Teams from './app/Team/Team'
 import Home from './app/Home/Home'
 import SignIn from './app/commonComponents/SignIn/SignIn';
 import CreateUser from './app/Actions/Users/CreateUser';
+import UpdateUser from './app/Actions/Users/UpdateUser'
 import Users from './app/Users/Users';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
               <Route path='/championships' element={<Championships />} />
               <Route path='/teams' element={<Teams />} />
               <Route path='/create-user' element={<CreateUser />} />
+              <Route path='/update-user' element={<UpdateUser />} />
               <Route path='/users' element={<Users />} />
             </Routes>
           </div>

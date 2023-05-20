@@ -4,7 +4,7 @@ import './Competitions.css'
 import Categories1 from "../../json/Competition1.json"
 import Categories2 from "../../json/Competition2.json"
 import Categories3 from "../../json/Competition3.json"
-import GenericTable from "../commonComponents/GenericTable/GenericTable"
+import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin"
 
 const Competitions = () => {
     const columnName = ["TeamOne"]

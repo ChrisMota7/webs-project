@@ -1,39 +1,43 @@
-import React, { Component } from 'react';
-
-import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin"
-import GenericTable from "../commonComponents/GenericTable/GenericTable"
+import React, { useEffect, useState } from 'react';
+import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin";
+import GenericTable from "../commonComponents/GenericTable/GenericTable";
 import { connect } from 'react-redux';
+import { getUsers } from '../../controller/UserController'
 
-class Users extends Component {
-    render(){
-        const columnName = ["Fullname", "Username", "Password"]
+const Users = () => {
+  const columnName = ["Fullname", "Username", "Password"];
+  const [usersData, setUsersData] = useState([]);
 
-        const { users } = this.props
+  useEffect(() => {
+    getUsers(setUsersData);
+  }, []);
 
-        return (
-            <div className='Users'>
-                <div>
-                    <GenericTable 
-                        columns={columnName} 
-                        content={users} 
-                        title={"Users"}/>
-                </div>
+  return (
+    <div className='Users'>
+      <h3>You have {usersData.length} users</h3>
+      <div>
+        <GenericTable
+          columns={columnName}
+          content={usersData}
+          title={"Users"}
+        />
+      </div>
 
-                <div>
-                    <GenericTableAdmin 
-                        columns={columnName} 
-                        content={users} 
-                        title={"Users"}/>
-                </div>
-            </div>
-        )
-    }
-}
+      <div>
+        <GenericTableAdmin
+          columns={columnName}
+          content={usersData}
+          title={"Users"}
+        />
+      </div>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
-    return {
-        users: state.user.users
-    }
-}
+  return {
+    usersData: state.usersData,
+  };
+};
 
-export default connect(mapStateToProps)(Users)
+export default connect(mapStateToProps)(Users);
