@@ -3,8 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
-import { connect } from 'react-redux';
-import { createUser } from '../../../store/actions/userActions';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../../controller/UserController'
@@ -20,12 +18,15 @@ const UpdateUser = () => {
     const [ fullname, setFullname ] = useState(searchParams.get('fullname'))
     const [ username, setUsername ] = useState(searchParams.get('username'))
     const [ password, setPassword ] = useState(searchParams.get('password'))
+    const [ isadmin, setIsAdmin ] = useState(searchParams.get('isadmin'))
+
+    console.log(isadmin)
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      if(updateUser(id, fullname, username, password))
-              navigate("/users")
-      else setShow(true)
+      if(await updateUser(id, fullname, username, password, isadmin) === false)
+        setShow(true)
+      else navigate("/users")
     };  
 
     const handleChangeFullname = (e) => {
@@ -38,6 +39,10 @@ const UpdateUser = () => {
 
     const handleChangePassword = (e) => {
         setPassword(e.target.value)
+    }
+
+    const handleChangeSelect = (e) => {
+      setIsAdmin(e.target.value)
     }
 
     return (
@@ -93,6 +98,25 @@ const UpdateUser = () => {
               onChange={handleChangePassword}
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="rol">
+            <Form.Label>Rol</Form.Label>
+            <Form.Select 
+              aria-label="Default select example"
+              onChange={handleChangeSelect}>
+                {/* This is not giving you a boolean!!! */}
+                {isadmin === true ? (
+                  <>
+                  <option value={true}>Admin</option>
+                  <option value={false}>Player</option>
+                  </>
+                ) : (
+                  <>
+                  <option value={false}>Player</option>
+                  <option value={true}>Admin</option>
+                  </>
+                )}
+            </Form.Select>
+          </Form.Group>
           <Button variant="primary" type="submit">
             Update
           </Button>
@@ -101,10 +125,4 @@ const UpdateUser = () => {
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createUser: (user) => dispatch(createUser(user))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(UpdateUser);
+export default UpdateUser;

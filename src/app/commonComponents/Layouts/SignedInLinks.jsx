@@ -15,9 +15,10 @@ const SignedInLinks = () => {
                     <hr />
                     <div className='navLinks'> 
                         <NavLink to='/championships' className='navs' ><PeopleFill /> Championships</NavLink>
+                        <NavLink to='/create-championship' className='navs' ><PeopleFill /> Create championship</NavLink>
                         <NavLink to='/teams' className='navs' ><PeopleFill /> Teams</NavLink>
                         <NavLink to='/competitions' className='navs' ><PeopleFill /> Competitions</NavLink>
-                        <NavLink to='/' className='navs' ><PeopleFill /> Players</NavLink>
+                        <NavLink to='/players' className='navs' ><PeopleFill /> Players</NavLink>
                         <NavLink to='/users' className='navs' ><PeopleFill /> User</NavLink>
                         <NavLink to='/create-user' className='navs' ><PeopleFill /> Create user</NavLink>
                     </div>

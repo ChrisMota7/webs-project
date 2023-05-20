@@ -7,6 +7,7 @@ const GenericTable = (props) => {
 
   return (    
     <div>
+      <h3>There are {content.length} {props.type}</h3>
       <div className='titulo'>
         <label htmlFor="">{props.title}</label>
       </div>
@@ -22,7 +23,7 @@ const GenericTable = (props) => {
             {content.map(data => (
               <tr key={data.id}>
                 {Object.entries(data).map(([key, value], index) => (
-                  index !== 0 && <td key={key}>{value}</td>
+                  key !== 'id' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
               </tr>
             ))}

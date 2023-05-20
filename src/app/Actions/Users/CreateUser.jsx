@@ -12,14 +12,15 @@ const CreateUser = () => {
     const [ fullname, setFullname ] = useState("")
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ isadmin, setIsAdmin ] = useState(false)
 
     const [ show, setShow ] = useState(false)
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if(createUser(fullname, username, password))
-                navigate("/users")
-        else setShow(true)
+        if(await createUser(fullname, username, password, isadmin) === false)
+          setShow(true)
+        else navigate("/users")
     };  
 
     const handleChangeFullname = (e) => {
@@ -32,6 +33,10 @@ const CreateUser = () => {
 
     const handleChangePassword = (e) => {
         setPassword(e.target.value)
+    }
+
+    const handleChangeSelect = (e) => {
+      setIsAdmin(e.target.value)
     }
 
     return (
@@ -86,6 +91,15 @@ const CreateUser = () => {
             <Form.Text className="text-muted">
                 Don't ever share this private information with anyone else.
             </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="rol">
+            <Form.Label>Rol</Form.Label>
+            <Form.Select 
+              aria-label="Default select example"
+              onChange={handleChangeSelect}>
+                <option value={false}>Player</option>
+                <option value={true}>Admin</option>
+            </Form.Select>
           </Form.Group>
           <Button variant="primary" type="submit">
             Create

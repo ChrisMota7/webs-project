@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../GenericTableAdmin/GenericTableAdmin.css'
 import { deleteUser } from '../../../controller/UserController'
+import { deleteChampionship } from '../../../controller/ChampionshipController'
 
 const GenericTableAdmin = (props) => {
   const navigate = useNavigate();
@@ -10,14 +11,17 @@ const GenericTableAdmin = (props) => {
   const columns = props.columns
   const content = props.content
 
-  console.log("content",content)
-
+  console.log(content)
   const handleDelete = (id) => {
-    deleteUser(id)
+    if(props.type === "users")
+      deleteUser(id)
+    else if (props.type === "championships")
+      deleteChampionship(id)
   }
 
   return (    
     <div>
+      <h3>You have {content.length} {props.type}</h3>
       <div className='titulo'>
         <label htmlFor="">{props.title}</label>
       </div>
@@ -32,15 +36,19 @@ const GenericTableAdmin = (props) => {
           <tbody>
             {content.map(data => (
               <tr key={data.id}>
-                {Object.entries(data).map(([key, value], index) => (
-                  index !== 0 && <td key={key}>{value}</td>
+                {Object.entries(data).map(([key, value]) => (
+                  key !== 'id' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
                 <td className='action-buttons'>
                   <button 
                     type="button" 
                     className="btn btn-warning" 
-                    onClick={() =>
-                      navigate(`/update-user?id=${data.id}&fullname=${data.fullname}&username=${data.username}&password=${data.password}`)
+                    onClick={() =>{
+                      if (props.type === 'users') {
+                        navigate(`/update-user?id=${data.id}&fullname=${data.fullname}&username=${data.username}&password=${data.password}&isadmin=${data.isadmin}`)
+                      } else if (props.type === 'championships') {
+                        navigate(`/update-championship?id=${data.id}&category=${data.category}`)
+                      }}
                     }>
                       Edit
                   </button>

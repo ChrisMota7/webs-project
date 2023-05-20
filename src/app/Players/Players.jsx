@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin";
 import GenericTable from "../commonComponents/GenericTable/GenericTable";
-import { getUsers } from '../../controller/UserController'
+import { getPlayers } from '../../controller/UserController'
 
-const Users = () => {
-  const columnName = ["Fullname", "Username", "Password", "Admin"];
-  const [usersData, setUsersData] = useState([]);
+const Players = () => {
+  const columnName = ["Fullname", "Username", "Password"];
+  const [playersData, setPlayersData] = useState([]);
 
   useEffect(() => {
-    getUsers(setUsersData);
+    getPlayers(setPlayersData);
   }, []);
 
   return (
-    <div className='Users'>
+    <div>
+      <h3>You have {playersData.length} players</h3>
       <div>
         <GenericTable
           columns={columnName}
-          content={usersData}
-          title={"Users"}
-          type={"users"}
+          content={playersData}
+          title={"Players"}
         />
       </div>
 
       <div>
         <GenericTableAdmin
           columns={columnName}
-          content={usersData}
-          title={"Users"}
-          type={"users"}
+          content={playersData}
+          title={"Players"}
+          type={"user"}
         />
       </div>
     </div>
   );
 };
 
-export default Users;
+export default Players;

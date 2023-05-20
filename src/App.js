@@ -10,6 +10,9 @@ import SignIn from './app/commonComponents/SignIn/SignIn';
 import CreateUser from './app/Actions/Users/CreateUser';
 import UpdateUser from './app/Actions/Users/UpdateUser'
 import Users from './app/Users/Users';
+import Players from './app/Players/Players';
+import CreateChampionship from './app/Actions/Championships/CreateChampionship';
+import UpdateChampionship from './app/Actions/Championships/UpdateChampionship';
 
 class App extends Component {
   render() {
@@ -29,6 +32,9 @@ class App extends Component {
               <Route path='/create-user' element={<CreateUser />} />
               <Route path='/update-user' element={<UpdateUser />} />
               <Route path='/users' element={<Users />} />
+              <Route path='/players' element={<Players />} />
+              <Route path='/create-championship' element={<CreateChampionship />} />
+              <Route path='/update-championship' element={<UpdateChampionship />} />
             </Routes>
           </div>
         </div>
