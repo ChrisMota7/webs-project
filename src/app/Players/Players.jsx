@@ -19,6 +19,7 @@ const Players = () => {
           columns={columnName}
           content={playersData}
           title={"Players"}
+          type={"user"}
         />
       </div>
 

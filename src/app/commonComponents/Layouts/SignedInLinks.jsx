@@ -17,6 +17,7 @@ const SignedInLinks = () => {
                         <NavLink to='/championships' className='navs' ><PeopleFill /> Championships</NavLink>
                         <NavLink to='/create-championship' className='navs' ><PeopleFill /> Create championship</NavLink>
                         <NavLink to='/teams' className='navs' ><PeopleFill /> Teams</NavLink>
+                        <NavLink to='/create-team' className='navs' ><PeopleFill /> Create team</NavLink>
                         <NavLink to='/competitions' className='navs' ><PeopleFill /> Competitions</NavLink>
                         <NavLink to='/players' className='navs' ><PeopleFill /> Players</NavLink>
                         <NavLink to='/users' className='navs' ><PeopleFill /> User</NavLink>

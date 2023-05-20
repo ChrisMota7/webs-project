@@ -10,6 +10,7 @@ const Competitions = () => {
     const columnName = ["TeamOne"]
     return (    
         <div className='championships'>
+            <h1>Not working yet!</h1>
             <div>
                 <GenericTableAdmin 
                     columns={columnName} 
@@ -17,6 +18,7 @@ const Competitions = () => {
                     title={"Competition 19:00 - 20:00"}/>
             </div>
                 
+            <h1>Not working yet!</h1>
             <div>
                 <GenericTableAdmin 
                 columns={columnName} 

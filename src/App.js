@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './app/commonComponents/NavBar/NavBar';
 import Competitions from './app/Competitions/Competitions'
 import Championships from './app/Championships/Championships'
-import Teams from './app/Team/Team'
+import Teams from './app/Teams/Teams'
 import Home from './app/Home/Home'
 import SignIn from './app/commonComponents/SignIn/SignIn';
 import CreateUser from './app/Actions/Users/CreateUser';
@@ -13,6 +13,8 @@ import Users from './app/Users/Users';
 import Players from './app/Players/Players';
 import CreateChampionship from './app/Actions/Championships/CreateChampionship';
 import UpdateChampionship from './app/Actions/Championships/UpdateChampionship';
+import CreateTeam from './app/Actions/Teams/CreateTeam'
+import UpdateTeam from './app/Actions/Teams/UpdateTeam'
 
 class App extends Component {
   render() {
@@ -29,6 +31,8 @@ class App extends Component {
               <Route path='/competitions' element={<Competitions />} />
               <Route path='/championships' element={<Championships />} />
               <Route path='/teams' element={<Teams />} />
+              <Route path='/create-team' element={<CreateTeam />} />
+              <Route path='/update-team' element={<UpdateTeam />} />
               <Route path='/create-user' element={<CreateUser />} />
               <Route path='/update-user' element={<UpdateUser />} />
               <Route path='/users' element={<Users />} />

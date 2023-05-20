@@ -5,27 +5,27 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { updateChampionship } from '../../../controller/ChampionshipController'
+import { updateTeam } from '../../../controller/TeamController'
 
-const UpdateChampionship = () => {
+const UpdateTeam = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
 
     const [ id ] = useState(searchParams.get('id'))
-    const [ category, setCategory ] = useState(searchParams.get('category'))
+    const [ teamName, setTeamName ] = useState(searchParams.get('name'))
 
     const [ show, setShow ] = useState(false)
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(await updateChampionship(id, category) === false)
+        if(await updateTeam(id, teamName) === false)
           setShow(true)
-        else navigate("/championships")
+        else navigate("/teams")
     };  
 
-    const handleChangePCategory = (e) => {
-        setCategory(e.target.value)
+    const handleChangeTeamName = (e) => {
+      setTeamName(e.target.value)
     }
 
     return (
@@ -48,19 +48,19 @@ const UpdateChampionship = () => {
                 />
                 <strong className="me-auto">ERROR</strong>
                 </Toast.Header>
-                <Toast.Body>Please enter category name</Toast.Body>
+                <Toast.Body>Please enter team name</Toast.Body>
             </Toast>
         </ToastContainer>
         
         <Form onSubmit={handleSubmit}>
-          <h1>Update Championship</h1>
-          <Form.Group className="mb-3" controlId="category">
-            <Form.Label>Category name</Form.Label>
+          <h1>Update Team</h1>
+          <Form.Group className="mb-3" controlId="team">
+            <Form.Label>Team name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter category name"
-              defaultValue={category}
-              onChange={handleChangePCategory}
+              placeholder="Enter team name"
+              defaultValue={teamName}
+              onChange={handleChangeTeamName}
             />
           </Form.Group> 
           <Button variant="primary" type="submit">
@@ -71,4 +71,4 @@ const UpdateChampionship = () => {
     );
 }
 
-export default UpdateChampionship;
+export default UpdateTeam;
