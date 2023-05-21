@@ -12,14 +12,13 @@ const GenericTableSubAdmin = (props) => {
   const columns = props.columns
   const content = props.content
 
-  console.log(content)
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     if(props.type === "users")
-      deleteUser(id)
+      deleteUser(props.id)
     else if (props.type === "championships")
-      deleteChampionship(id)
-    else if (props.type === "teams")
-      deleteTeam(id)
+      deleteChampionship(props.id)
+    else if (props.type === "players")
+      deleteTeam(props.id)
   }
 
   return (    
@@ -32,13 +31,16 @@ const GenericTableSubAdmin = (props) => {
           <button 
             type="button" 
             className="btn btn-warning" 
-            onClick={console.log("Edit")}>
+            onClick={() =>{
+              if (props.type === 'players') {
+                navigate(`/update-team?id=${props.id}&name=${props.title}`)
+              } }}>
               Edit
           </button>
           <button 
             type="button" 
             className="btn btn-danger"
-            onClick={console.log("Delete")}>
+            onClick={handleDelete}>
               Delete
           </button>
         </div>

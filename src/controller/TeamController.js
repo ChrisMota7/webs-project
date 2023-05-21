@@ -44,6 +44,55 @@ const getPlayersNames = async (setPlayersData, playersArray) => {
     return () => unsubscribe(); 
 }
 
+export const searchPlayer = async (setSearchStatus, playerFullName, setPlayerid) => {
+    const q = query(collection(db, 'users'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const { fullname, isadmin } = doc.data();
+        if(playerFullName === fullname){
+            setSearchStatus(true)
+            setPlayerid(doc.id)
+        }
+      });
+    });
+    setSearchStatus(false)
+    return () => unsubscribe(); 
+}
+
+export const addPlayer = async (playerid, path) => {
+    await addDoc(collection(db, path), {
+        player: playerid
+    })
+}
+
+export const deletePlayer = async (playerid, path) => {
+    try {
+        await deleteDoc(doc(db, path, playerid));
+      } catch (error) {
+        console.error("Error deleting player:", error);
+      }
+}
+
+export const searchPlayerInTeam = (setDeleteid, playerid, collectionid) => {
+    return new Promise((resolve, reject) => {
+      const q = query(collection(db, `/teams/${collectionid}/players`));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const { player } = doc.data();
+          if (playerid === player) {
+            setDeleteid(doc.id);
+            resolve(doc.id);
+          }
+        });
+      });
+  
+      return () => {
+        unsubscribe();
+        reject(new Error("Search canceled"));
+      };
+    });
+  };
+
 export const createTeam = async (name)  => {
     if(name === ""){
         return false

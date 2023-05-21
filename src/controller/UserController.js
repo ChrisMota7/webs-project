@@ -20,7 +20,6 @@ export const getPlayers = async (setPlayersData) => {
       let playersArray = [];
       querySnapshot.forEach((doc) => {
         const { fullname, username, password, isadmin } = doc.data();
-        console.log(fullname, isadmin)
         if(isadmin === false)
             playersArray.push({ id: doc.id, fullname, username, password });
       });

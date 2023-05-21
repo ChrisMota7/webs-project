@@ -7,7 +7,6 @@ export const getChampionships = async (setChampionshipsData) => {
       let championshipsArray = [];
       querySnapshot.forEach((doc) => {
         const { category } = doc.data();
-        console.log(category)
         championshipsArray.push({ id: doc.id, category });
       });
       setChampionshipsData(championshipsArray);

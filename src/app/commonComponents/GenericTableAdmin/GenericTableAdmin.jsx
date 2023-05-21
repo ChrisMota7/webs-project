@@ -12,7 +12,6 @@ const GenericTableAdmin = (props) => {
   const columns = props.columns
   const content = props.content
 
-  console.log(content)
   const handleDelete = (id) => {
     if(props.type === "users")
       deleteUser(id)

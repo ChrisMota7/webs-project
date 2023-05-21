@@ -1,11 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-
 import Table from 'react-bootstrap/Table';
 import '../GenericTableSub/GenericTableSub.css'
 
 const GenericTableSub = (props) => {
-  const navigate = useNavigate();
-
   const columns = props.columns
   const content = props.content
 

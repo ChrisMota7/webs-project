@@ -20,8 +20,6 @@ const UpdateUser = () => {
     const [ password, setPassword ] = useState(searchParams.get('password'))
     const [ isadmin, setIsAdmin ] = useState(searchParams.get('isadmin'))
 
-    console.log(isadmin)
-    
     const handleSubmit = async (e) => {
       e.preventDefault();
       if(await updateUser(id, fullname, username, password, isadmin) === false)
