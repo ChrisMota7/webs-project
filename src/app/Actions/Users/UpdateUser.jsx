@@ -3,24 +3,28 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
-import { createUser } from '../../../controller/UserController'
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../../controller/UserController'
 
-const CreateUser = () => {
+const UpdateUser = () => {
     const navigate = useNavigate();
-
-    const [ fullname, setFullname ] = useState("")
-    const [ username, setUsername ] = useState("")
-    const [ password, setPassword ] = useState("")
-    const [ isadmin, setIsAdmin ] = useState(false)
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
 
     const [ show, setShow ] = useState(false)
-    
+
+    const [ id ] = useState(searchParams.get('id'))
+    const [ fullname, setFullname ] = useState(searchParams.get('fullname'))
+    const [ username, setUsername ] = useState(searchParams.get('username'))
+    const [ password, setPassword ] = useState(searchParams.get('password'))
+    const [ isadmin, setIsAdmin ] = useState(searchParams.get('isadmin'))
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if(await createUser(fullname, username, password, isadmin) === false)
-          setShow(true)
-        else navigate("/users")
+      e.preventDefault();
+      if(await updateUser(id, fullname, username, password, isadmin) === false)
+        setShow(true)
+      else navigate("/users")
     };  
 
     const handleChangeFullname = (e) => {
@@ -64,11 +68,12 @@ const CreateUser = () => {
         </ToastContainer>
         
         <Form onSubmit={handleSubmit}>
-          <h1>Create new User</h1>
+          <h1>Update User</h1>
           <Form.Group className="mb-3" controlId="fullname">
             <Form.Label>Full name</Form.Label>
             <Form.Control
               type="text"
+              defaultValue={fullname}
               placeholder="Enter full name"
               onChange={handleChangeFullname}
             />
@@ -77,6 +82,7 @@ const CreateUser = () => {
             <Form.Label>User name</Form.Label>
             <Form.Control
               type="text"
+              defaultValue={username}
               placeholder="Enter user name"
               onChange={handleChangeUsername}
             />
@@ -85,28 +91,36 @@ const CreateUser = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              defaultValue={password}
               placeholder="Password"
               onChange={handleChangePassword}
             />
-            <Form.Text className="text-muted">
-                Don't ever share this private information with anyone else.
-            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="rol">
             <Form.Label>Rol</Form.Label>
             <Form.Select 
               aria-label="Default select example"
               onChange={handleChangeSelect}>
-                <option value={false}>Player</option>
-                <option value={true}>Admin</option>
+                {/* This is not giving you a boolean!!! */}
+                {isadmin === true ? (
+                  <>
+                  <option value={true}>Admin</option>
+                  <option value={false}>Player</option>
+                  </>
+                ) : (
+                  <>
+                  <option value={false}>Player</option>
+                  <option value={true}>Admin</option>
+                  </>
+                )}
             </Form.Select>
           </Form.Group>
           <Button variant="primary" type="submit">
-            Create
+            Update
           </Button>
         </Form>
       </div>
     );
 }
 
-export default CreateUser;
+export default UpdateUser;

@@ -1,13 +1,13 @@
 import Table from 'react-bootstrap/Table';
-import '../GenericTable/GenericTable.css'
+import '../GenericTableSub/GenericTableSub.css'
 
-const GenericTable = (props) => {
+const GenericTableSub = (props) => {
   const columns = props.columns
   const content = props.content
 
   return (    
     <div>
-      <h3>There are {content.length} {props.type}</h3>
+      <h3>You have {content.length} {props.type}</h3>
       <div className='titulo'>
         <label htmlFor="">{props.title}</label>
       </div>
@@ -22,8 +22,8 @@ const GenericTable = (props) => {
           <tbody>
             {content.map(data => (
               <tr key={data.id}>
-                {Object.entries(data).map(([key, value], index) => (
-                  key !== 'id' && key !== 'password' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
+                {Object.entries(data).map(([key, value]) => (
+                  key !== 'id' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
               </tr>
             ))}
@@ -33,4 +33,4 @@ const GenericTable = (props) => {
   );
 }
 
-export default GenericTable;
+export default GenericTableSub;

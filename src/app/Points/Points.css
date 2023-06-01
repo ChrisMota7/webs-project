@@ -1,0 +1,4 @@
+.teamsColumns {
+    display: flex;
+    flex-direction: row;
+}

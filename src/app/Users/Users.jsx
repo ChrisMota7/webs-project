@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin";
+import GenericTable from "../commonComponents/GenericTable/GenericTable";
+import { getUsers } from '../../controller/UserController'
 
-import GenericTableAdmin from "../commonComponents/GenericTableAdmin/GenericTableAdmin"
-import GenericTable from "../commonComponents/GenericTable/GenericTable"
-import { connect } from 'react-redux';
+const Users = () => {
+  const columnName = ["Fullname", "Username", "Admin"];
+  const [usersData, setUsersData] = useState([]);
 
-class Users extends Component {
-    render(){
-        const columnName = ["Fullname", "Username", "Password"]
+  useEffect(() => {
+    getUsers(setUsersData);
+  }, []);
 
-        const { users } = this.props
+  return (
+    <div className='Users'>
+      <div>
+        <GenericTable
+          columns={columnName}
+          content={usersData}
+          title={"Users"}
+          type={"users"}
+        />
+      </div>
 
-        return (
-            <div className='Users'>
-                <div>
-                    <GenericTable 
-                        columns={columnName} 
-                        content={users} 
-                        title={"Users"}/>
-                </div>
+      <div>
+        <GenericTableAdmin
+          columns={columnName}
+          content={usersData}
+          title={"Users"}
+          type={"users"}
+        />
+      </div>
+    </div>
+  );
+};
 
-                <div>
-                    <GenericTableAdmin 
-                        columns={columnName} 
-                        content={users} 
-                        title={"Users"}/>
-                </div>
-            </div>
-        )
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        users: state.user.users
-    }
-}
-
-export default connect(mapStateToProps)(Users)
+export default Users;

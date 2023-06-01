@@ -1,0 +1,22 @@
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 10px 10px;
+    font-size: 140%;
+    text-align: left;
+    color: white;
+    background-color: rgb(8, 22, 39, 1);
+}
+
+.title-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
