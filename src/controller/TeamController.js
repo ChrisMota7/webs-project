@@ -14,6 +14,18 @@ export const getTeams = async (setTeamsData) => {
     return () => unsubscribe(); 
 }
 
+export const getTeamId = async (setTeamId, teamName) => {
+  const q = query(collection(db, 'teams'));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const { name } = doc.data();
+      if(teamName === name)
+        setTeamId(doc.id)
+    });
+  });
+  return () => unsubscribe(); 
+}
+
 export const getTeamPlayers = async (setPlayersData, path) => {
     const q = query(collection(db, path));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {

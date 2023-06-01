@@ -23,7 +23,7 @@ const GenericTable = (props) => {
             {content.map(data => (
               <tr key={data.id}>
                 {Object.entries(data).map(([key, value], index) => (
-                  key !== 'id' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
+                  key !== 'id' && key !== 'password' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
               </tr>
             ))}

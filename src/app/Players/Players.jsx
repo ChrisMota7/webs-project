@@ -4,7 +4,7 @@ import GenericTable from "../commonComponents/GenericTable/GenericTable";
 import { getPlayers } from '../../controller/UserController'
 
 const Players = () => {
-  const columnName = ["Fullname", "Username", "Password"];
+  const columnName = ["Fullname", "Username", "Goles"];
   const [playersData, setPlayersData] = useState([]);
 
   useEffect(() => {

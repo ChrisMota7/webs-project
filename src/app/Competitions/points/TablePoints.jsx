@@ -6,20 +6,11 @@ import { deleteUser } from '../../../controller/UserController'
 import { deleteChampionship } from '../../../controller/ChampionshipController'
 import { deleteTeam } from '../../../controller/TeamController'
 
-const GenericTableSubAdmin = (props) => {
+const TablePoints = (props) => {
   const navigate = useNavigate();
 
   const columns = props.columns
   const content = props.content
-
-  const handleDelete = () => {
-    if(props.type === "users")
-      deleteUser(props.id)
-    else if (props.type === "championships")
-      deleteChampionship(props.id)
-    else if (props.type === "players")
-      deleteTeam(props.id)
-  }
 
   return (    
     <div>
@@ -28,26 +19,6 @@ const GenericTableSubAdmin = (props) => {
         <label htmlFor="">{props.title}</label>
         
         <div className='title-buttons'>
-          <button 
-            type="button" 
-            className="btn btn-warning" 
-            onClick={() =>{
-              if (props.type === 'players') {
-                navigate(`/update-team?id=${props.id}&name=${props.title}`)
-              } else if (props.type === 'competitions'){
-                navigate(`/update-competition?id=${props.id}&name=${props.title}`)
-              } }}>
-              Edit
-          </button>
-          {
-            props.type != "competitions" &&
-            <button 
-              type="button" 
-              className="btn btn-danger"
-              onClick={handleDelete}>
-                Delete
-            </button>
-          }
         </div>
       </div>
         <Table striped bordered hover size="sm">
@@ -64,6 +35,24 @@ const GenericTableSubAdmin = (props) => {
                 {Object.entries(data).map(([key, value]) => (
                   key !== 'id' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
+                
+                <InputGroup className="mb-3">
+                    <Form.Control
+                    placeholder="Points"
+                    aria-label="Recipient's points"
+                    aria-describedby="basic-addon2"
+                    />
+                    <Button variant="outline-secondary" 
+                        id="button-addon2"
+                        onClick={handleDelete}>
+                    Button
+                    </Button>
+                </InputGroup>
+                <button 
+                  type="button" 
+                  className="btn btn-danger">
+                    Update
+                </button>
               </tr>
             ))}
           </tbody>
@@ -72,4 +61,4 @@ const GenericTableSubAdmin = (props) => {
   );
 }
 
-export default GenericTableSubAdmin;
+export default TablePoints;

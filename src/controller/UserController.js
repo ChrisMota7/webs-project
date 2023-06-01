@@ -19,10 +19,11 @@ export const getPlayers = async (setPlayersData) => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let playersArray = [];
       querySnapshot.forEach((doc) => {
-        const { fullname, username, password, isadmin } = doc.data();
+        const { fullname, username, password, isadmin, goles } = doc.data();
         if(isadmin === false)
-            playersArray.push({ id: doc.id, fullname, username, password });
+            playersArray.push({ id: doc.id, fullname, username, password, goles });
       });
+      playersArray.sort((a, b) => b.goles - a.goles); 
       setPlayersData(playersArray);
     });
     return () => unsubscribe(); 

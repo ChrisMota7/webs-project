@@ -41,3 +41,22 @@ export const updateChampionship = async (id, category)  => {
 export const deleteChampionship = async (id) => {
     await deleteDoc(doc(db, 'championships', id))
 }
+
+export const searchChampionshipId = async (categoryName) => {
+    return new Promise((resolve, reject) => {
+  const q = query(collection(db, 'championships'));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const { category } = doc.data();
+      if(categoryName === category){
+        resolve(doc.id);
+      }
+    });
+  });
+  
+  return () => {
+    unsubscribe();
+    reject(new Error("Search canceled"));
+  };
+});
+}

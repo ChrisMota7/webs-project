@@ -15,6 +15,8 @@ import CreateChampionship from './app/Actions/Championships/CreateChampionship';
 import UpdateChampionship from './app/Actions/Championships/UpdateChampionship';
 import CreateTeam from './app/Actions/Teams/CreateTeam'
 import UpdateTeam from './app/Actions/Teams/UpdateTeam'
+import CreateCompetition from './app/Actions/Competitions/CreateCompetition'
+import UpdateCompetition from './app/Actions/Competitions/UpdateCompetition';
 
 class App extends Component {
   render() {
@@ -29,6 +31,8 @@ class App extends Component {
               <Route exact path='/' element={<SignIn />} />
               <Route path='/home' element={<Home />} />
               <Route path='/competitions' element={<Competitions />} />
+              <Route path='/create-competition' element={<CreateCompetition />} />
+              <Route path='/update-competition' element={<UpdateCompetition />} />
               <Route path='/championships' element={<Championships />} />
               <Route path='/teams' element={<Teams />} />
               <Route path='/create-team' element={<CreateTeam />} />
