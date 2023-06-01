@@ -59,7 +59,7 @@ const GenericTableAdmin = (props) => {
                   key !== 'id' && key !== 'password' && <td key={key}>{typeof value === 'boolean' ? value.toString() : value}</td>
                 ))}
                 <td className='action-buttons'>
-                  {props.type != "competitions" &&
+                  {props.type !== "competitions" &&
                     <button 
                       type="button" 
                       className="btn btn-warning" 

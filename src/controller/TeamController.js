@@ -26,6 +26,19 @@ export const getTeamId = async (setTeamId, teamName) => {
   return () => unsubscribe(); 
 }
 
+export const getTeamsInfo = (setTeamsData) => {
+  const q = query(collection(db, 'teams'));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    let teamsArray = [];
+    querySnapshot.forEach((doc) => {
+      const { name, pj, gf, gc, df, jg, je, jp, pts } = doc.data();
+      teamsArray.push({ id: doc.id, name, pj, gf, gc, df, jg, je, jp, pts });
+    });
+    setTeamsData(teamsArray);
+  });
+  return () => unsubscribe(); 
+}
+
 export const getTeamPlayers = async (setPlayersData, path) => {
     const q = query(collection(db, path));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
