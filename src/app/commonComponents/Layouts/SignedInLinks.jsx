@@ -2,6 +2,11 @@ import React, { useContext } from 'react'
 import './Layouts.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PeopleFill } from "react-bootstrap-icons";
+import { People } from "react-bootstrap-icons";
+import { TrophyFill } from "react-bootstrap-icons";
+import { PersonFill } from "react-bootstrap-icons";
+import { PersonPlusFill } from "react-bootstrap-icons";
+import { ClipboardDataFill } from "react-bootstrap-icons";
 import { GearFill } from "react-bootstrap-icons";
 import { StopwatchFill } from "react-bootstrap-icons";
 import { NavLink } from 'react-router-dom';
