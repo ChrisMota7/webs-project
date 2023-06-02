@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { getUsers } from '../../../controller/UserController';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../controller/AuthContext';
 
 const SignIn = () => {
-    const [ usename, setUsername ] = useState('')
-    const [ password, setPassword ] = useState('')
-
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [users, setUsers] = useState([]);
+  
+    useEffect(() => {
+      async function fetchUsers() {
+        await getUsers(setUsers);
+      }
+      fetchUsers();
+    }, []);
+  
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log("usename",usename)
-        console.log("password",password)
-    }
+      e.preventDefault();
+      const result = users.filter((user) => {
+        return user.username === username && user.password === password;
+      });
+      console.log('result', result);
+      if (result.length > 0) {
+        setUsername('');
+        setPassword('');
+        login(result[0].fullname, result[0].isadmin);
+        navigate(`/home?fullname=${result[0].fullname}&username=${result[0].username}&isadmin=${result[0].isadmin}`);
+      } else {
+        console.log('error');
+      }
+    };
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
@@ -32,7 +55,7 @@ const SignIn = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>User name</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" onChange={handleUsernameChange} />
+                    <Form.Control type="text" placeholder="Enter email" onChange={handleUsernameChange} />
                     <Form.Text className="text-muted">
                     We'll never share your private information with anyone else.
                     </Form.Text>

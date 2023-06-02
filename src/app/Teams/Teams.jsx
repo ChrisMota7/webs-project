@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GenericTableSubAdmin from "../commonComponents/GenericTableSubAdmin/GenericTableSubAdmin";
 import GenericTableSub from "../commonComponents/GenericTableSub/GenericTableSub";
 import { getTeams, getTeamPlayers } from '../../controller/TeamController'
+import { AuthContext } from '../../controller/AuthContext';
 
 const TeamPlayers = (props) => {
     const [players, setPlayers] = useState([]);
@@ -10,8 +11,12 @@ const TeamPlayers = (props) => {
         getTeamPlayers(setPlayers, `/teams/${props.team.id}/players`)
     }, [props.team.id]);
 
+    const { userRol } = useContext(AuthContext);
+
     return (
         <div>
+          {
+            userRol ? 
             <GenericTableSubAdmin 
                 columns={props.columnName} 
                 content={players} 
@@ -19,7 +24,7 @@ const TeamPlayers = (props) => {
                 id={props.team.id}
                 type={"players"}
             />
-
+            :
             <GenericTableSub 
                 columns={props.columnName} 
                 content={players} 
@@ -27,6 +32,7 @@ const TeamPlayers = (props) => {
                 id={props.team.id}
                 type={"players"}
             />
+          }
         </div>
     );
   };

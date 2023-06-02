@@ -40,6 +40,18 @@ export const getCompetitionsByChampionship = async (setCompetitionsData, champio
   return () => unsubscribe(); 
 }
 
+export const getCompetitionByInfo = async (setCompetitionId, championshipid, teamone, teamtwo) => {
+  const q = query(collection(db, 'competitions'))
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const { category, team1, team2 } = doc.data();
+      if(championshipid === category && team1 === teamone && team2 === teamtwo)
+        setCompetitionId(doc.id)
+    });
+  });
+  return () => unsubscribe(); 
+}
+
 export const getTeamName = async (teamid) => {
   return new Promise((resolve, reject) => {
     const q = query(collection(db, 'teams'));
@@ -86,4 +98,10 @@ export const deleteCompetition = async (categoryid, teamOne, teamTwo) => {
     });
   });
   return () => unsubscribe(); 
+}
+
+export const updateCompetitionStatus = async (id) => {
+  await updateDoc(doc(db, 'competitions', id), {
+    status: 1
+  })
 }

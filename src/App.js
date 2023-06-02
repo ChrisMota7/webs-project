@@ -17,10 +17,13 @@ import CreateTeam from './app/Actions/Teams/CreateTeam'
 import UpdateTeam from './app/Actions/Teams/UpdateTeam'
 import CreateCompetition from './app/Actions/Competitions/CreateCompetition'
 import UpdateCompetition from './app/Actions/Competitions/UpdateCompetition';
+import Points from './app/Points/Points';
+import { AuthProvider } from './controller/AuthContext';
 
 class App extends Component {
   render() {
     return(
+      <AuthProvider>
       <BrowserRouter>
         <div style={{ display: 'flex' }}>
           <div style={{ flex: 1 }}>
@@ -33,6 +36,7 @@ class App extends Component {
               <Route path='/competitions' element={<Competitions />} />
               <Route path='/create-competition' element={<CreateCompetition />} />
               <Route path='/update-competition' element={<UpdateCompetition />} />
+              <Route path='/points' element={<Points />} />
               <Route path='/championships' element={<Championships />} />
               <Route path='/teams' element={<Teams />} />
               <Route path='/create-team' element={<CreateTeam />} />
@@ -47,6 +51,7 @@ class App extends Component {
           </div>
         </div>
       </BrowserRouter>
+      </AuthProvider>
     )
   }
 }

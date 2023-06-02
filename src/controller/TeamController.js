@@ -142,6 +142,19 @@ export const updateTeam = async (id, name)  => {
     }
 }
 
+export const updateTeamPoints = async (id, pj, gf, gc, df, jg, je, jp, pts)  => {
+  await updateDoc(doc(db, 'teams', id), {
+      pj: pj,
+      gf: gf,
+      gc: gc,
+      df: df,
+      jg: jg,
+      je: je,
+      jp: jp,
+      pts: pts
+  })
+}
+
 export const deleteTeam = async (id) => {
     await deleteDoc(doc(db, 'teams', id))
 }

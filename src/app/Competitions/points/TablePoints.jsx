@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getTeamsInfo } from '../../../controller/TeamController';
+import GenericTable from '../../commonComponents/GenericTable/GenericTable';
 
 const TablePoints = () => {
     const columnName = ["Team", "PJ", "GF", "GC", "DF", "JG", "JE", "JP", "PTS"];
     const [teamsPoints, setTeamsPoints] = useState([]);
   
     useEffect(() => {
-      getUsers(setTeamsPoints); //Bring teams info from firebase, bring only name and points
+      getTeamsInfo(setTeamsPoints); 
     }, []);
 
     return (

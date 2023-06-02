@@ -7,10 +7,11 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { deleteUser, getPlayers } from '../../../controller/UserController'
 import { deleteChampionship } from '../../../controller/ChampionshipController'
-import { deleteTeam, getTeamsInfo } from '../../../controller/TeamController'
+import { deleteTeam, getTeamsInfo, updateTeamPoints } from '../../../controller/TeamController'
 import { useState } from 'react';
 import { getTeamId } from '../../../controller/TeamController';
 import { parse } from 'uuid';
+import { getCompetitionByInfo, updateCompetitionStatus } from '../../../controller/CompetitionController';
 
 const GenericTableSubAdmin = (props) => {
   const navigate = useNavigate();
@@ -42,6 +43,26 @@ const GenericTableSubAdmin = (props) => {
   const [ pts1, setPts1 ] = useState(0)
   const [ pts2, setPts2 ] = useState(0)
 
+  console.log("TEAM1")
+  console.log("pj",pj1)
+  console.log("gf",gf1)
+  console.log("gc",gc1)
+  console.log("df",df1)
+  console.log("jg",jg1)
+  console.log("je",je1)
+  console.log("jp",jp1)
+  console.log("pts",pts1)
+
+  console.log("TEAM2")
+  console.log("pj",pj2)
+  console.log("gf",gf2)
+  console.log("gc",gc2)
+  console.log("df",df2)
+  console.log("jg",jg2)
+  console.log("je",je2)
+  console.log("jp",jp2)
+  console.log("pts",pts2)
+
   console.log(content)
   const handleClose = () => setShow(false);
 
@@ -67,10 +88,9 @@ const GenericTableSubAdmin = (props) => {
     return filtered = teams.filter((team) => team.id === teamid)
   }
   
-  const handlePost = () => {
-    //Search in those teams the teams by id
+  const handleInit = () => {
     const team1info = searchTeam(teamOne)
-    //get the starting values of 
+    console.log("team1infooooo",team1info)
     setPj1(parseInt(team1info[0].pj))
     setGf1(parseInt(team1info[0].gf))
     setGc1(parseInt(team1info[0].gc))
@@ -107,23 +127,23 @@ const GenericTableSubAdmin = (props) => {
     console.log("jg",jg2)
     console.log("je",je2)
     console.log("jp",jp2)
+    console.log("pts",pts2)
   }
 
-  const handleSubmit = () => {
-    //if team1points > teams2Points
+  const handlePost = () => {
     if(teamOneResult > teamTwoResult){
+      console.log(pts1 + 3)
       setPts1(pts1 + 3)
+      console.log(jg1 + 1)
       setJg1(jg1 + 1)
+      console.log(jp2 + 1)
       setJp2(jp2 + 1)
     }
-    //then do += 1 to jg in team1 and += to jp in team2
-    //else if team1points < teams2Points then do a += 1 to jp in team2 and += to jp in team1
     else if(teamOneResult < teamTwoResult){
       setPts2(pts2 + 3)
       setJg2(jg2 + 1)
       setJp1(jp1 + 1)
     }
-    //else += 1 to je in team1 and 2
     else {
       setPts1(pts1 + 1)
       setPts2(pts2 + 1)
@@ -131,49 +151,25 @@ const GenericTableSubAdmin = (props) => {
       setJe2(je2 + 1)
     }
 
-    //in team1 and team2 += 1 to pj
     setPj1(pj1 + 1)
     setPj2(pj2 + 1)
-    //add team1points to gf in team1
-    //add team2points to gf in team2
-    //add team1points to gc in team2
-    //add team2points to gc in team1
-    setGf1(gf1 + teamOneResult)
-    setGc1(gf1 + teamTwoResult)
-    setGf2(gf2 + teamTwoResult)
-    setGc2(gf2 + teamOneResult)
+    setGf1(gf1 + parseInt(teamOneResult))
+    setGc1(gc1 + parseInt(teamTwoResult))
+    setGf2(gf2 + parseInt(teamTwoResult))
+    setGc2(gc2 + parseInt(teamOneResult))
 
-    //df in team1 = team1.gf - team1.gc ------CHANGE!! YOU NEED TO TAKE THE ORIGINAL VALUE, NOT THE RESULTING GF1 IS FOR EACH COMPETITION
-    const localDf1 = teamOneResult - teamTwoResult
+    const localDf1 = parseInt(teamOneResult) - parseInt(teamTwoResult)
     setDf1(df1 + localDf1)
-    //df in team2 = team1.gf - team1.gc
-    const localDf2 = teamTwoResult - teamOneResult
+    const localDf2 = parseInt(teamTwoResult) - parseInt(teamOneResult)
     setDf2(df2 + localDf2)
+  }
 
-    //pts in team1 = team1.jg + team1.je
-    setPts1(pts1 + (jg1 + je1))
-    //pts in team2 = team2.jg + team2.je
-    setPts2(pts2 + (jg2 + je2))
-
-    
-    console.log("pj",pj1)
-    console.log("gf",gf1)
-    console.log("gc",gc1)
-    console.log("df",df1)
-    console.log("jg",jg1)
-    console.log("je",je1)
-    console.log("jp",jp1)
-    console.log("pts",pts1)
-
-    console.log("pj",pj2)
-    console.log("gf",gf2)
-    console.log("gc",gc2)
-    console.log("df",df2)
-    console.log("jg",jg2)
-    console.log("je",je2)
-    console.log("jp",jp2)
-
-
+  const handleSubmit = async () => {
+    await updateTeamPoints(teamOne, pj1, gf1, gc1, df1, jg1, je1, jp1, pts1)
+    await updateTeamPoints(teamTwo, pj2, gf2, gc2, df2, jg2, je2, jp2, pts2)
+    await getCompetitionByInfo(setId, props.id, teamOne, teamTwo)
+    await updateCompetitionStatus(id)
+    setShow(false)
   }
 
   const handleFinish = async (competitionid, team1, team2) => {
@@ -183,8 +179,7 @@ const GenericTableSubAdmin = (props) => {
     await getTeamsInfo(setTeams)
     await getTeamId(setTeamOne, team1)
     await getTeamId(setTeamTwo, team2)
-    //Save the ids from teams
-    //Then it gows to handleSubmit
+    handleInit()
   }
 
   return (    

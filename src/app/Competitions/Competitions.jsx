@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GenericTableSubAdmin from "../commonComponents/GenericTableSubAdmin/GenericTableSubAdmin";
 import GenericTableSub from "../commonComponents/GenericTableSub/GenericTableSub";
 import { getCompetitions, getTeamName } from '../../controller/CompetitionController'
 import { getChampionships, searchChampionshipId } from '../../controller/ChampionshipController';
 import { getTeams } from '../../controller/TeamController';
 import GenericTable from '../commonComponents/GenericTable/GenericTable'
+import { AuthContext } from '../../controller/AuthContext';
 
 const CompetitionsTable = (props) => {
   const competitions = props.content;
@@ -22,9 +23,13 @@ const CompetitionsTable = (props) => {
     team1: getTeamName(competition.team1),
     team2: getTeamName(competition.team2),
   }));
+  
+  const { userRol } = useContext(AuthContext);
 
   return (
     <div>
+    {
+      userRol ? 
       <GenericTableSubAdmin
         columns={props.columnName}
         content={updatedCompetitions}
@@ -32,7 +37,7 @@ const CompetitionsTable = (props) => {
         id={props.id}
         type={"competitions"}
       />
-
+      :
       <GenericTable
         columns={props.columnName}
         content={updatedCompetitions}
@@ -40,6 +45,7 @@ const CompetitionsTable = (props) => {
         id={props.id}
         type={"competitions"}
       />
+    }
     </div>
   );
 };
